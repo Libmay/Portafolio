@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libni Chávez - Product Owner & Ingeniera Civil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,100 1000,0"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideUp 1s ease 0.3s both;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+            animation: slideUp 1s ease 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: slideUp 1s ease 0.9s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Project Section */
+        .projects {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 3rem;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-description {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .project-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .highlight-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .experience-item {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .experience-company {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .experience-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .experience-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Libni Chávez</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Libni Chávez</h1>
+                <p class="subtitle">Product Owner | Ingeniera Civil | Especialista en Gestión de Proyectos</p>
+                <p class="description">
+                    Profesional multidisciplinaria con más de 15 años de experiencia en gestión de proyectos complejos, 
+                    ahora especializada en Product Management y metodologías ágiles. Combino rigor técnico con visión 
+                    estratégica para crear productos digitales que generen impacto real.
+                </p>
+                <a href="#proyectos" class="cta-button">Ver Mis Proyectos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="habilidades" class="skills">
+        <div class="container">
+            <h2 class="section-title">Habilidades y Competencias</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">??</div>
+                    <h3>Product Management</h3>
+                    <p>Gestión de roadmaps, priorización con MoSCoW, definición de MVP, análisis de métricas y KPIs</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">?</div>
+                    <h3>Metodologías Ágiles</h3>
+                    <p>Scrum, Scrumban, Design Thinking, Agile Inception, Planning Poker, retrospectivas</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">???</div>
+                    <h3>Gestión de Proyectos</h3>
+                    <p>Coordinación multidisciplinaria, control de costos, supervisión de obras, análisis de riesgos</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">??</div>
+                    <h3>Análisis de Datos</h3>
+                    <p>Lead Time, Tiempo de Ciclo, Burndown Charts, métricas de calidad, análisis de usuario</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">??</div>
+                    <h3>Liderazgo de Equipos</h3>
+                    <p>Facilitación de equipos, resolución de conflictos, comunicación efectiva, mentoring</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">??</div>
+                    <h3>Research & UX</h3>
+                    <p>Entrevistas de usuario, validación de hipótesis, prototipado, testing de usabilidad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos" class="projects">
+        <div class="container">
+            <h2 class="section-title">Proyecto Destacado</h2>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">EcoMove ????</h3>
+                    <p class="project-subtitle">App de Movilidad Urbana Sostenible</p>
+                </div>
+                
+                <div class="project-content">
+                    <div class="project-description">
+                        <p>
+                            <strong>EcoMove</strong> es una aplicación innovadora que transforma la movilidad urbana en Santiago, 
+                            conectando usuarios con alternativas de transporte sustentables. Como Product Owner, lideré el desarrollo 
+                            completo desde la validación inicial hasta el MVP funcional, aplicando metodologías ágiles y design thinking.
+                        </p>
+                    </div>
+                    
+                    <div class="project-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-title">Validación de Hipótesis</div>
+                            <p>10+ entrevistas de usuario, 70% tasa de aceptación, validación de problema real en movilidad urbana</p>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-title">Metodología Aplicada</div>
+                            <p>Design Thinking, Agile Inception, Scrumban, Planning Poker, priorización MoSCoW</p>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-title">Métricas Clave</div>
+                            <p>Lead Time: 12 días, Tiempo de Ciclo: 4.5 días, Cobertura de pruebas: 66.6%</p>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-title">Impacto Proyectado</div>
+                            <p>$8M inversión inicial, ROI 200%, cuota de mercado $16M en 2 años</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-tags">
+                        <span class="tech-tag">Product Management</span>
+                        <span class="tech-tag">Scrum</span>
+                        <span class="tech-tag">Design Thinking</span>
+                        <span class="tech-tag">User Research</span>
+                        <span class="tech-tag">Agile Inception</span>
+                        <span class="tech-tag">MVP</span>
+                        <span class="tech-tag">MoSCoW</span>
+                        <span class="tech-tag">Planning Poker</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://youtu.be/kmVT_P735tE" class="project-link" target="_blank">Ver Demo</a>
+                        <a href="#contacto" class="project-link">Más Información</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experiencia" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experiencia Relevante</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Bootcamp Product Owner</div>
+                        <div class="experience-company">Especialización en Gestión de Productos Digitales</div>
+                    </div>
+                    <div class="experience-date">2024 - 2025</div>
+                </div>
+                <div class="experience-description">
+                    Formación intensiva en metodologías ágiles, gestión de productos digitales y liderazgo de equipos. 
+                    Desarrollo del proyecto EcoMove aplicando Design Thinking, Scrum, y herramientas de Product Management. 
+                    Competencias adquiridas en user research, prototipado, métricas de producto y roadmap planning.
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">SDR - Corredora de Propiedades</div>
+                        <div class="experience-company">ASSETPLAN</div>
+                    </div>
+                    <div class="experience-date">2022 - 2024</div>
+                </div>
+                <div class="experience-description">
+                    Prospección y calificación de leads, análisis de necesidades del cliente, optimización de procesos comerciales. 
+                    Desarrollo de habilidades en customer discovery, negociación y gestión de relaciones con stakeholders. 
+                    Experiencia directa en comprensión del usuario y validación de propuestas de valor.
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Asistente Project Cost Control</div>
+                        <div class="experience-company">VCGP ASTALDI</div>
+                    </div>
+                    <div class="experience-date">2018 - 2020</div>
+                </div>
+                <div class="experience-description">
+                    Control de avance físico y financiero de proyectos, generación de reportes y métricas, 
+                    coordinación multidisciplinaria. Uso de plataformas digitales para gestión de proyectos (TIPS), 
+                    análisis de datos y toma de decisiones basada en evidencia.
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Ingeniera de Proyecto</div>
+                        <div class="experience-company">OBRAS PÚBLICAS DEL ESTADO</div>
+                    </div>
+                    <div class="experience-date">2012 - 2015</div>
+                </div>
+                <div class="experience-description">
+                    Diseño y gestión de proyectos de infraestructura, elaboración de especificaciones técnicas, 
+                    gestión de recursos y cronogramas. Supervisión de equipos multidisciplinarios y coordinación 
+                    con stakeholders. Experiencia en gestión de proyectos complejos con múltiples variables.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <p>¿Interesado en colaborar o conocer más sobre mi trabajo? ¡Conectemos!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>??</span>
+                    <a href="mailto:libnichavez@gmail.com">libnichavez@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>??</span>
+                    <a href="tel:+56966401820">+56 9 6640 1820</a>
+                </div>
+                <div class="contact-item">
+                    <span>??</span>
+                    <span>La Cisterna, Santiago, Chile</span>
+                </div>
+                <div class="contact-item">
+                    <span>??</span>
+                    <a href="https://linkedin.com/in/libni-chavez" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Libni Chávez. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Animate cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.skill-card, .project-card, .experience-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
